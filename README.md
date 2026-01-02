@@ -14,12 +14,6 @@ Can cluster analysis reveal distinct groups of automotive companies based on the
 - **Raw data location (recommended):** `data/raw/Euro_6_latest.csv`
 - **Derived manufacturer dataset (created in Notebook 01/02):** `data/derived/manufacturer_level_dataset.csv` 
 
-### Raw data sharing
-If the raw dataset has licensing/redistribution constraints, do **not** upload it to GitHub. Instead:
-- keep it locally in `data/raw/`
-- upload only derived/aggregated outputs in `data/derived/`
-- document the source in `data/raw/README.md`
-
 ## Method Overview (Notebook pipeline)
 1. **01_data_cleaning.ipynb**
    - removes duplicates, cleans column names, converts key columns to numeric
