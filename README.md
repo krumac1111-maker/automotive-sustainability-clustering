@@ -9,10 +9,6 @@ Can cluster analysis reveal distinct groups of automotive companies based on the
 
 > Dataset note: the WLTP/Euro 6 file used here does **not** contain manufacturer-level renewable electricity use. Therefore, the notebook constructs a clean-transition proxy using **powertrain adoption shares** (BEV/Hybrid/ICE). Findings should be interpreted as segmentation by *tailpipe emissions, efficiency, and electrification mix*, not by full operational renewable energy adoption.
 
-## Data
-- **Raw input file (example name):** `Euro_6_latest.csv`
-- **Raw data location (recommended):** `data/raw/Euro_6_latest.csv`
-- **Derived manufacturer dataset (created in Notebook 01/02):** `data/derived/manufacturer_level_dataset.csv` 
 
 ## Method Overview (Notebook pipeline)
 1. **01_data_cleaning.ipynb**
