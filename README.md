@@ -12,7 +12,7 @@ Can cluster analysis reveal distinct groups of automotive companies based on the
 ## Data
 - **Raw input file (example name):** `Euro_6_latest.csv`
 - **Raw data location (recommended):** `data/raw/Euro_6_latest.csv`
-- **Derived manufacturer dataset (created in Notebook 01/02):** `data/derived/manufacturer_level_dataset.csv` (recommended filename)
+- **Derived manufacturer dataset (created in Notebook 01/02):** `data/derived/manufacturer_level_dataset.csv` 
 
 ### Raw data sharing
 If the raw dataset has licensing/redistribution constraints, do **not** upload it to GitHub. Instead:
@@ -88,7 +88,7 @@ pip install -r requirements.txt
 - **Sample and measurement constraints:** Manufacturer results depend on the number and representativeness of vehicle records per manufacturer (e.g., uneven counts across brands) and on the accuracy/consistency of vehicle-level reporting.
   - *Mitigation:* The analysis reports `n_variants` (rows per manufacturer) and profiles clusters using multiple indicators to reduce reliance on any single metric.
 
-### Alternatives considered (and why not primary)
+### Alternatives considered
 - **Hierarchical clustering (Ward linkage):** Useful when clusters are not perfectly spherical and provides a dendrogram for exploratory structure. Not used as the main method because K-Means offers clearer **centroid-based profiling** and simpler communication for board-style insights.
 - **Gaussian Mixture Models (GMM):** Allows **soft membership** (probabilistic assignment), which can be useful when manufacturers sit between profiles. Not selected as primary due to added complexity and the preference for stable, interpretable hard clusters.
 - **DBSCAN/HDBSCAN:** Can detect irregular cluster shapes and identify noise/outliers. Not used as primary because results depend strongly on hyperparameters (e.g., `eps`, `min_samples`) and performance may be unstable when clustering aggregated manufacturer-level indicators.
