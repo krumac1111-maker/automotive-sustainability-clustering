@@ -10,6 +10,13 @@ Can cluster analysis reveal distinct groups of automotive companies based on the
 > Dataset note: the WLTP/Euro 6 file used here does **not** contain manufacturer-level renewable electricity use. Therefore, the notebook constructs a clean-transition proxy using **powertrain adoption shares** (BEV/Hybrid/ICE). Findings should be interpreted as segmentation by *tailpipe emissions, efficiency, and electrification mix*, not by full operational renewable energy adoption.
 
 
+# Windows (PowerShell)
+.\.venv\Scripts\activate
+
+# Mac/Linux
+source .venv/bin/activate
+
+
 ## Method Overview (Notebook pipeline)
 1. **01_data_cleaning.ipynb**
    - removes duplicates, cleans column names, converts key columns to numeric
