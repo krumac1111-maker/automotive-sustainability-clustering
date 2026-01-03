@@ -77,6 +77,22 @@ pip install -r requirements.txt
 2) Run notebooks in order: `01` → `04`.  
 3) Outputs should save into `outputs/figures/` and `outputs/tables/`.
 
-## Transparency & limitations
-- K-Means is distance-based, so **scaling** is required and results can be sensitive to outliers.
-- Renewable electricity use is not directly observed in WLTP/Euro 6, so transition is approximated using BEV/Hybrid/ICE shares.
+## Transparency, limitations, and alternatives
+
+### Key limitations (and mitigations)
+- **Renewables variable gap:** Manufacturer-level renewable electricity use is not available in the WLTP/Euro 6 dataset. Therefore, transition is approximated using **powertrain adoption shares (BEV/Hybrid/ICE)**. Findings should be interpreted as segmentation by *tailpipe emissions, efficiency, and electrification mix*, not full operational renewable energy adoption.
+  - *Mitigation:* This is stated explicitly in the research question discussion and reported as a limitation; future work can merge ESG/CSR renewables indicators to test cluster stability.
+
+- **Model assumptions (K-Means):** K-Means is distance-based and works best when clusters are roughly spherical and features are comparable in scale. Results can be sensitive to outliers and scaling choices.
+  - *Mitigation:* Features are standardised (z-scores) prior to clustering, and sensitivity checks (e.g., multiple random seeds / stability) are recommended to confirm robustness.
+
+- **Sample and measurement constraints:** Manufacturer results depend on the number and representativeness of vehicle records per manufacturer (e.g., uneven counts across brands) and on the accuracy/consistency of vehicle-level reporting.
+  - *Mitigation:* The analysis reports `n_variants` (rows per manufacturer) and profiles clusters using multiple indicators to reduce reliance on any single metric.
+
+### Alternatives considered (and why not primary)
+- **Hierarchical clustering (Ward linkage):** Useful when clusters are not perfectly spherical and provides a dendrogram for exploratory structure. Not used as the main method because K-Means offers clearer **centroid-based profiling** and simpler communication for board-style insights.
+- **Gaussian Mixture Models (GMM):** Allows **soft membership** (probabilistic assignment), which can be useful when manufacturers sit between profiles. Not selected as primary due to added complexity and the preference for stable, interpretable hard clusters.
+- **DBSCAN/HDBSCAN:** Can detect irregular cluster shapes and identify noise/outliers. Not used as primary because results depend strongly on hyperparameters (e.g., `eps`, `min_samples`) and performance may be unstable when clustering aggregated manufacturer-level indicators.
+
+> Future work: integrate company-reported renewables/operations data (e.g., from sustainability reports or ESG databases) and re-run clustering to evaluate whether memberships remain stable when a true renewables indicator is included.
+
